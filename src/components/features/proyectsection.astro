@@ -1,0 +1,35 @@
+---
+export interface Props {
+	title?: string,
+	key?: string,
+	img?: string,
+	link?: string,
+	content?: string,
+	framework?: string
+}
+
+const {
+	title = "No hay titulo ingresado",
+	key = "",
+	img = "/images/empty.webp",
+	link = "/",
+	content = "Contenido no ingresado",
+	framework = "No ingresado"
+} = Astro.props
+---
+
+<section id={key} class="bg-gray-950 w-full rounded-md flex flex-col justify-center items-center px-4 py-4 gap-4">
+	<h3 class="text-xl font-semibold"> { title } </h3>
+	<article class="flex flex-col md:flex-row justify-center md:justify-between items-center md:items-start gap-4 md:gap-0 w-full">
+		<img src={ img } alt={ title } class="h-[150px] w-full md:w-[48%] bg-black/80 rounded-lg object-cover" />
+		<p class="opacity-80 w-full md:w-[48%]"> { content } </p>
+	</article>
+	<p class="opacity-50 w-full text-center text-sm md:text-base"> Framework usado: { framework } </p>
+	<a href={ link } class="px-5 py-1 rounded-lg custom-border text-white hover:scale-110"> Ingresar </a>
+</section>
+
+<style>
+.custom-border { border: 0.1rem white solid; transition: 250ms ease-in-out }
+.custom-border:hover { border: 0.1rem darkblue solid; background-color: darkblue; }
+.custom-border:active { border: 0.1rem darkgreen solid; background-color: darkgreen; }
+</style>

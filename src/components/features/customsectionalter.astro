@@ -1,0 +1,13 @@
+---
+export interface Props {
+	title?: string,
+	id?:string
+}
+
+const { title = "No title", id = "" } = Astro.props;
+---
+
+<section id={id} class="w-[85dvw] max-w-[800px] bg-black/80 rounded-md px-5 py-3">
+	<h3 class="text-xl font-semibold text-center"> {title} </h3>
+	<slot />
+</section>

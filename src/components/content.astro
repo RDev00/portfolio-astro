@@ -1,0 +1,63 @@
+---
+//Secciones bases
+import CustomSection from './features/customsection.astro';
+import CustomSectionAlter from './features/customsectionalter.astro';
+//Secciones secundarias
+import ProyectSection from './features/proyectsection.astro';
+import StackSection from './features/stacksection.astro';
+//Colleccioones
+import { getCollection } from 'astro:content';
+const webs = await getCollection('webs');
+import frameworks from '../content/frameworks.ts';
+import langs from '../content/langs.ts';
+---
+
+<main id="acercade" class="my-10 flex flex-col gap-7 justify-start items-center max-w-full">
+	<h2 class="text-3xl font-semibold py-1"> Acerca de </h2>
+	<CustomSection title="Sobre mi">
+		Hola, soy Jose, un programador web aprendiz y mis aspiraciones es llegar a ser un Full Stack Developer. Me comprometo con proyectos y entiendo las indicaciones de manera correcta, doy las soluciones que veo la mejor opcion dentro de problemas, los cuales analizo y trato de entenderlos de la mejor manera
+	</CustomSection>
+	<CustomSection id="contacto" title="Contacto">
+		Puedes contactarme por correo como martinezbocanegrajoserafael@gmail.com, solo trata de darle un encabezado al correo en el que des una idea de lo que hablaras dentro del cuerpo del mismo, pues de lo contrario creere que es spam. Puedes contacarme si gustas que trabaje contigo o que te cree una pagina web para tu negocio u organizacion.
+	</CustomSection>
+
+	<CustomSectionAlter id="proyectos" title="Proyectos">		
+		<p class="opacity-80 pb-5">Si bien mi cantidad de proyectos propios no es muy grande, he de aclara que a cada uno le he dado un esfuerzo y dedicacion muy aceptables, aparte de ser de codigo abierto, pues busco demostrar mis avances dentro de estos mismos. Y mis proyectos son los siguientes</p>
+		<hr />
+		<section class="py-5 flex flex-col gap-4 justify-center items-center">
+			{
+				webs.map(web => {
+					const { slug, data } = web;
+					const { title, link, img, description, framework } = data;
+					return (
+						<ProyectSection key={`id_${title}`} title={title} img={`/webs/${img}`} content={description} link={link} framework={framework} />
+					)
+				})	
+			}
+		</section>
+	</CustomSectionAlter>
+
+	<CustomSectionAlter id="stacks" title="Stacks y lenguajes aprendidos">
+		<h1 class="text-lg font-semibold w-full text-center pt-3"> Stacks </h1>
+		<section class="py-5 flex flex-col gap-4 justify-center items-center">
+			{
+				frameworks.map(framework => {
+					return (
+						<StackSection key={`id_${framework.title}`} title={framework.title} img={framework.img} description={framework.description} />
+					)
+				})
+			}
+		</section>
+		<hr />
+		<h1 class="text-lg font-semibold w-full text-center pt-3"> Lenguajes </h1>
+		<section class="py-5 flex flex-col gap-4 justify-center items-center">
+			{
+				langs.map(lang => {
+					return (
+						<StackSection key={`id_${lang.title}`} title={lang.title} img={lang.img} description={lang.description} />
+					)
+				})
+			}
+		</section>
+	</CustomSectionAlter>
+</main>

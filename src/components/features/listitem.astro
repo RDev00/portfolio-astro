@@ -1,0 +1,12 @@
+	---
+	export interface Props {
+		text?: string,
+		link?: string
+	}
+
+	const { text = "No text", link = "No link" } = Astro.props;
+	---
+
+	<li class="opacity-80 hover:opacity-100 hover:scale-110 duration-200">
+		<a href={link}> { text } </a>
+	</li>
