@@ -3,7 +3,7 @@ export interface Props {
 	title?: string
 }
 
-const { title = 'Inicio' } = Astro.props
+const { title = 'Inicio' } = Astro.props;
 ---
 
 
@@ -19,6 +19,32 @@ const { title = 'Inicio' } = Astro.props
 	<slot />
 </body>
 </html>
+
+<script>
+function verifyVisibility() {
+	const upArrow = document.getElementById('up-arrow')
+	const elementRect = document.getElementById('header').getBoundingClientRect();
+	const verifyPosition = (
+		elementRect.top >= -20 || elementRect.top + elementRect.height >= -20
+	);
+
+	if (!verifyPosition) {
+		upArrow.style.display = 'block';
+		upArrow.classList.add('showButton');
+		upArrow.classList.remove('hideButton');
+	} else {
+		upArrow.classList.remove('showButton');
+		upArrow.classList.add('hideButton');
+		upArrow.addEventListener('animationend', animation => {
+			if(animation.animationName === 'hidebutton') {
+				upArrow.style.display = 'none';
+			}
+		})
+	}
+};
+
+window.addEventListener('scroll', verifyVisibility)
+</script>
 
 <style>
 html {

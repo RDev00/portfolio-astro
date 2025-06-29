@@ -1,0 +1,18 @@
+<a href="#top" id="up-arrow" class="w-10 aspect-ratio-square fixed bottom-5 right-5 object-cover bg-gray-900 rounded-md duration-200 hover:scale-110 hover:brightness-150" style="display: none;">
+	<img src="/images/uparrow.webp" alt="up-arrow" class="custom-position custom-color" />
+</a>
+
+<style is:global>
+@keyframes showbutton {
+	from { transform: translateY(100%); opacity: 0 }
+	to { transform: translateY(0); opacity: 1 }
+}
+@keyframes hidebutton {
+	from { transform: translateY(0); opacity: 1 }
+	to { transform: translateY(100%); opacity: 0 }
+}
+.showButton { animation: showbutton 0.5s ease-in-out forwards; }
+.hideButton { animation: hidebutton 0.5s ease-in-out forwards; }
+.custom-position { transform: translateY(3px); }
+.custom-color { filter: brightness(1000); }
+</style>
